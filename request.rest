@@ -1,9 +1,9 @@
-GET http://localhost:8080/
+GET http://localhost:8080/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGVkIiwiaWF0IjoxNjYzMzQzOTY5fQ.p_CJGslfWKboUR3jRhFoMOQuYLELcI12ZW29Vfo0i2I
 ###
 POST http://localhost:8080/login
 Content-Type: application/json
 
 {
-    "userName": "Aphiwe",
-    "age": 35
+    "name": "Ted"
 }

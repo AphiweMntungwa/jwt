@@ -14,8 +14,8 @@ const posts = [
 app.listen(8080, () => {
     console.log('connection secured');
 })
-app.get('/', (req, res) => {
-    res.json(posts)
+app.get('/posts', authenticateToken, (req, res) => {
+    res.json(posts.filter(el => el.name === req.user.name))
 })
 app.post('/login', function(req, res) {
     const { name, age } = req.body;
@@ -23,3 +23,14 @@ app.post('/login', function(req, res) {
     const token = jwt.sign(user, process.env.ACCESS_TOKEN)
     res.json({ token })
 })
+
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]
+    if (token == null) return res.status(401)
+    jwt.verify(token, process.env.ACCESS_TOKEN, (err, user) => {
+        if (err) return res.status(403)
+        req.user = user;
+        next()
+    })
+}
