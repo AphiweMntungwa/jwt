@@ -7,8 +7,9 @@ app.use(express.json())
 dotenv.config()
 
 const posts = [
-    { name: 'Ted', age: 28 },
-    { name: 'Blade', age: 50 },
+    { name: 'Ted', age: 28, post: '1p' },
+    { name: 'Blade', age: 50, post: '2p' },
+    { name: 'Aphiwe', age: 22, post: '3p' }
 ]
 app.listen(8080, () => {
     console.log('connection secured');
